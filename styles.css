@@ -49,6 +49,7 @@ body.page-photos {
 
 main {
     padding: 20px;
+    font-family: 'Times New Roman', Times, serif; /* Changed for better readability and consistency. */
 }
 
 /* The .container class is applied to the main content of each page to set a max width and center the content on the page creating a more visually appealing layout and improving readability. */
