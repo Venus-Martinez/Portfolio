@@ -117,7 +117,11 @@ function setupJQueryToggles() {
             $("#photoGridSection").slideToggle(200, function () {
                 const galleryVisible = $("#photoGridSection").is(":visible");
 
-                $("#photoHiddenMessage").toggle(!galleryVisible);
+                // IMPORTANT: clear any old inline display style left by .toggle() / .hide()
+                $("#photoHiddenMessage").removeAttr("style");
+
+                // Show message only when gallery is hidden
+                $("#photoHiddenMessage").toggleClass("d-none", galleryVisible);
 
                 $("#toggle-photo-grid").text(
                     galleryVisible ? "Hide Photo Gallery" : "Show Photo Gallery"
