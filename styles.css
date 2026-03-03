@@ -5,20 +5,23 @@ Author: Venus Martinez
 */
 
 /* This "styles.css" file applies styles to the elements of the entire website. */
+/* Milestone 6 note: Bootstrap is now used for navigation and responsive layout. */
 
 /* The .federant-regular class is applied to the headings on the photos page to give them a unique and visually appealing font style. The "Federant" font is a decorative serif font that has been embedded from fonts.google.com */
 
-.federant-regular {      /* Not currently in use, but this class exemplifies how to apply the "Federant" font to specific elements of the website. */
+.federant-regular {
+    /* Not currently in use, but this class exemplifies how to apply the "Federant" font to specific elements of the website. */
     font-family: "Federant", serif;
     font-weight: 400;
     font-style: normal;
 }
 
-/* The following styles are applied to the body of each page based on the class assigned to it. This allows for different background colors for each page while maintaining a consistent font and layout across the entire website.
-*/
+
+/* The following styles are applied to the body of each page based on the class assigned to it. This allows for different background colors for each page while maintaining a consistent font and layout across the entire website. */
 
 body {
-    font-family: 'Federant', serif; /* Google Fonts added to the website. Changed from 'Times New Roman', Times, serif. */
+    font-family: 'Federant', serif;
+    /* Google Fonts added to the website. Changed from 'Times New Roman', Times, serif. */
     margin: 0;
     line-height: 1.5;
 }
@@ -36,7 +39,13 @@ body.page-hobbies {
 }
 
 body.page-photos {
-    background-color: #c5d5dd; /* Added to the Photos page */
+    background-color: #c5d5dd;
+    /* Added to the new Photos page. (Milestone 4) */
+}
+
+body.page-contact {
+    background-color: #d8d8d8;
+    /* Added to the new Contact page. (Milestone 4) */
 }
 
 /* The universal selector ("*") is used to apply the box-sizing property to all elements on every page. This ensures that the padding and border of each element are included in its total width and height, making it easier to manage the layout and spacing of elements across the website. */
@@ -49,12 +58,20 @@ body.page-photos {
 
 main {
     padding: 20px;
-    font-family: 'Times New Roman', Times, serif; /* Changed for better readability and consistency. */
+    font-family: 'Times New Roman', Times, serif;
+    /* Changed to 'Times New Roman', Times, serif for better readability. (Milestone 4) */
 }
 
 /* The .container class is applied to the main content of each page to set a max width and center the content on the page creating a more visually appealing layout and improving readability. */
 
 .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+}
+
+.site-container {
     max-width: 900px;
     margin: 0 auto;
 }
@@ -63,21 +80,16 @@ main {
 
 #ball {
     /* The ball width and height */
-    width:50px;
+    width: 50px;
     height: 50px;
     padding: 6px;
     font-size: 14px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-weight: bold;
-    text-decoration: none;
     /* The ball color */
     background: #ff0389;
-    /* Makes the ball a ball by making it rounded */
+    /* Border-Radius makes the ball a ball by making it rounded */
     border-radius: 50%;
-    /* The "fixed" position allows the ball to move across the entire viewport even while scrolling, while "absolute" would limit the ball's movement to the area of its nearest positioned ancestor and "relative" would position the ball relative to its normal position in the document flow. */
+    /* The position being "fixed" allows the ball to move across the entire viewport even while scrolling, while "absolute" would limit the ball's movement to the area of its nearest positioned ancestor and "relative" would position the ball relative to its normal position in the document flow. */
     position: fixed;
     /* The "bounceX" and "bounceY" animations are applied to the ball, with different durations and timing functions to create a dynamic and visually interesting movement across the screen. The "infinite" keyword allows the animations to repeat indefinitely, while "alternate" causes the animations to reverse direction on each iteration, creating a bouncing effect. */
     animation:
@@ -86,10 +98,20 @@ main {
     z-index: 1;
 }
 
+.language {
+    text-align: right;
+    margin: 10px 25px 10px 0;
+}
+
+/* The following keyframes are what make the ball in my Hobbies page bounce across the screen.
+The "bounceX" animation moves the ball horizontally from the left edge of the viewport to the right edge, while the "bounceY" animation moves the ball vertically from the top edge of the viewport to the bottom edge.
+The use of "calc(100vw - 50px)" and "calc(100vh - 50px)" ensures that the ball stays within the visible area of the screen, accounting for its own width and height. */
+
 @keyframes bounceX {
     from {
         left: 0;
     }
+
     to {
         left: calc(100vw - 50px);
     }
@@ -99,54 +121,24 @@ main {
     from {
         top: 0;
     }
+
     to {
         top: calc(100vh - 50px);
     }
 }
 
-/* Hidden pop-up message when ball is caught */
-
-#caught {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-#caught:target {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-}
-
-.pop-up {
-    background-color: #8aed7d;
-    padding: 20px;
-    border: 2px solid black;
-    border-radius: 10px;
-    font-size: 18px;
-    z-index: 9999;
-}
-.close-button {
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
-    font-size: 14px;
-    text-align: right;
-    font-family: sans-serif;
-}
-
 /* The following styles are  applied to allow the .ball animation to move behind the header and footer while still being visible on top of main content. */
 
-audio, video, svg, main {
+audio,
+video,
+svg,
+main {
     position: relative;
     z-index: 0;
 }
 
-header, footer {
+header,
+footer {
     position: relative;
     z-index: 2;
 }
@@ -154,6 +146,8 @@ header, footer {
 /* Accessibility: Disables motion effects for users who prefer reduced motion. */
 
 @media (prefers-reduced-motion: reduce) {
+
+    /* The universal selector ("*") is used to apply the "animation: none", "transition: none", and "scroll-behavior: auto" properties to all elements on every page. This ensures that all animations, transitions, and smooth scrolling effects are disabled for users who have indicated a preference for reduced motion, improving accessibility and providing a more comfortable browsing experience for those users. */
     * {
         animation: none !important;
         transition: none !important;
@@ -169,11 +163,15 @@ h1 {
     animation: fadeInDown 0.9s ease-out;
 }
 
+/* The "fadeInDown" animation is applied to the h1 headings on each page to create a smooth and visually appealing effect that enhances the user experience upon loading the page.
+The animation starts with the headings being fully transparent and slightly above their final position, then transitions to being fully visible and in their final, set position. */
+
 @keyframes fadeInDown {
     from {
         opacity: 0;
         transform: translateY(-20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -194,15 +192,25 @@ h3.guide {
     animation: blinkInOut 2.8s linear infinite;
 }
 
+/* The following keyframes define the "blinkInOut" animation used for the h3.guide class.
+This animation creates a slow blinking and color-changing effect by transitioning the opacity and color of the text at specific intervals.
+The text starts fully visible and blue, then fades to half opacity and red, briefly becomes invisible and green, before returning to its original state.
+This cycle repeats indefinitely, drawing attention to the "Start Here" section on the homepage. */
+
 @keyframes blinkInOut {
-    0%, 100% {
+
+    0%,
+    100% {
         opacity: 1;
         color: #0000FF;
     }
-    30%, 70% {
+
+    30%,
+    70% {
         opacity: 0.5;
         color: #FF0000;
     }
+
     50% {
         opacity: 0;
         color: #00FF00;
@@ -219,10 +227,11 @@ p {
 }
 
 p.about-highlight {
-    color: #065223; /* Style moved from inline to external CSS */
+    color: #065223;
+    /* This style was moved from inline to CSS for Milestone 4 */
 }
 
-/* The paragraph following the table on the about page has its own class to allow for different styling. */
+/* The paragraph following the table on the Hobbies page has its own class to allow for different styling. */
 
 p.table-follow-up {
     text-align: center;
@@ -231,7 +240,7 @@ p.table-follow-up {
     margin-top: 20px;
 }
 
-/* The paragraph in the "Start Here" section on the homepage has its own class to allow for different styling. */
+/* The paragraph in the "Start Here" section on the Home page has its own class to allow for different styling. */
 
 p.start-here {
     font-size: 16px;
@@ -239,20 +248,22 @@ p.start-here {
 }
 
 p.larger {
-    font-size: larger; /* Style moved from internal to external CSS from the Hobbies page */
+    font-size: larger;
+    /* Style moved from inline to external CSS from the Hobbies page. (Milestone 4) */
 }
 
 /* The following styles are applied to the navigation bar. It uses flexbox to create a horizontal layout with spacing between the links, and includes a border and background color for visual separation from the rest of the page. */
 /* The .nav class I previously used was changed to a more specific "ul.nav" while the "nav" selector was added for overall styling of the navigation bar to allow for better readability and easier maintenance. */
 
-nav {
+.legacy-nav {
     align-items: center;
     padding: 5px;
     border: #333333 solid 1px;
     background-color: #f0f0f0;
 }
 
-/* .nav {
+/* 
+.nav {
     align-items: center;
     list-style-type: none;
     padding: 5px;
@@ -260,14 +271,14 @@ nav {
     justify-content: center;
     border: #333333 solid 1px;
     background-color: #f0f0f0;
-    }  
-    The styling commented out here was the previous version of coding I had for the navigation section.
+}  
+    The styling commented out here was the previous version of coding I had for the navigation section. (Milestone 4)
 */
 
 ul.nav {
     list-style-type: none;
     display: flex;
-    gap: 55px;
+    gap: 10%;
     justify-content: center;
     margin: 0;
     padding: 0;
@@ -283,7 +294,7 @@ ul.nav {
 /* The following styles are applied to the navigation links. They include a transition effect that increases the height and font size of the links when hovered over, creating a dynamic and interactive user experience. */
 /* These were changed from individual link styles to a more general style for all links within the navigation bar to allow for easier maintenance and better readability. */
 
-nav a {
+.legacy-nav a {
     height: 100%;
     font-size: 16px;
     transition: height 0.3s, font-size 0.3s;
@@ -291,7 +302,7 @@ nav a {
 
 /* The font-size was increased to 32px on hover to create a more noticeable effect, also making it easier for users to see which link they are hovering over. */
 
-nav a:hover {
+.legacy-nav a:hover {
     height: 120%;
     font-size: 32px;
 }
@@ -307,7 +318,7 @@ nav a:hover {
     height: 120%;
     font-size: 18px;
 }
-    The styling commented out here was more of the previous version of coding I had for the navigation links.
+    The styling commented out here was more of the previous version of coding I had for the navigation links. (Milestone 4)
 */
 
 table {
@@ -332,7 +343,9 @@ td {
     color: #000;
     font-size: 17px;
 }
-th, td {
+
+th,
+td {
     border: 1px solid #333;
     padding-left: 15px;
     padding-top: 5px;
@@ -348,19 +361,27 @@ th, td {
 
 video {
     width: 640px;
-    max-width: 100%; /* Added to ensure the video is responsive and does not exceed the width of its container on smaller screens. */
-    height: auto; /* Changed from a fixed height to auto to maintain the aspect ratio of the video and prevent distortion. */
+    max-width: 100%;
+    /* Added to ensure the video is responsive and does not exceed the width of its container on smaller screens. (Milestone 4) */
+    height: auto;
+    /* Changed from a fixed height to auto to maintain the aspect ratio of the video and prevent distortion. (Milestone 4) */
 }
 
 .svg-video-1 {
-    width: 100%; /* Added to ensure the SVG is responsive and scales appropriately on different screen sizes. */
-    max-width: 565px; /* Added to set a maximum width for the SVG, preventing it from becoming too large on larger screens while still allowing it to scale down on smaller screens. */
-    height: auto; /* Changed from a fixed height to auto to maintain the aspect ratio of the SVG and prevent distortion. */
-    display: block; /* Added to ensure the SVG is treated as a block-level element, allowing it to take up the full width of its container and enabling the margin auto centering to work effectively. */
-    margin: 0 auto; /* Added to center the SVG horizontally within its container. */
+    width: 100%;
+    /* Added to ensure the SVG is responsive and scales appropriately on different screen sizes. (Milestone 4) */
+    max-width: 565px;
+    /* Added to set a maximum width for the SVG, preventing it from becoming too large on larger screens while still allowing it to scale down on smaller screens. (Milestone 4) */
+    height: auto;
+    /* Changed from a fixed height to auto to maintain the aspect ratio of the SVG and prevent distortion. (Milestone 4) */
+    display: block;
+    /* Added to ensure the SVG is treated as a block-level element, allowing it to take up the full width of its container and enabling the margin auto centering to work effectively. (Milestone 4) */
+    margin: 0 auto;
+    /* Added to center the SVG horizontally within its container. (Milestone 4) */
 }
 
-.svg-video2-audio { /* Changed in the same way as the .svg-video-1 class to ensure consistency in styling and responsiveness across all media elements on the Hobbies page. (Milestone 4) */
+.svg-video2-audio {
+    /* Changed in the same way as the .svg-video-1 class to ensure consistency in styling and responsiveness across all media elements on the Hobbies page. (Milestone 4) */
     width: 100%;
     max-width: 620px;
     height: auto;
@@ -383,51 +404,54 @@ img {
 */
 
 #about-me-img {
-    float: left;
     margin: 10px 40px 0 5px;
     border: 2px solid #000;
     border-radius: 10px;
     max-width: 220px;
 }
 
-/* Photos page Flexbox gallery */
+/* Photos page Flexbox gallery (Milestone 4) */
 .photo-grid {
-  display: flex;
-  flex-wrap: wrap;              /* IMPORTANT: shows wrapping */
-  gap: 16px;                    /* Clean spacing between items */
-  justify-content: center;      /* Keeps layout centered */
-  align-items: stretch;
-  margin: 20px;
-  padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    /* IMPORTANT: shows wrapping */
+    gap: 16px;
+    /* Clean spacing between items */
+    justify-content: center;
+    /* Keeps layout centered */
+    align-items: stretch;
+    margin: 20px;
+    padding: 20px;
 }
 
 .photo-item {
-  flex: 1 1 200px;              /* Grow, shrink, base width */
-  max-width: 260px;             /* Prevents overly wide items */
-  border: 2px solid #000;
-  border-radius: 10px;
-  padding: 10px;
-  background-color: #fff;
+    max-width: 260px;
+    margin: 0 auto;
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #fff;
+    text-align: center; /* optional: keeps captions aligned nicely */
+    overflow: hidden;
 }
 
 .photo-item img {
-    float: none;
     display: block;
     width: 100%;
-    max-width: 100%;
     height: auto;
-    margin: 0;
+    margin: 0 auto;
 }
 
 .photo-item figcaption {
-  text-align: center;
-  margin-top: 8px;
-  font-size: 0.95rem;
+    text-align: center;
+    margin-top: 8px;
+    font-size: 0.95rem;
 }
 
 /* Quick Facts has it's own class to allow for different styling. */
 
-.quick-facts-header { /* Added to the Photos page to style the "Quick Facts" section header differently from the other h2 headings on the website. */
+.quick-facts-header {
+    /* Added to the Photos page to style the "Quick Facts" section header differently from the other h2 headings on the website. (Milestone 4) */
     margin-top: 10px;
     padding-top: 5px;
 }
@@ -446,6 +470,22 @@ img {
     padding: 15px 15px 50px 15px;
     margin: 20px;
     background-color: white;
+
+}
+
+/* The .contact-card class is applied to the card on the Contact page to set a max width and center it on the page, creating a more visually appealing layout and improving readability. */
+.contact-card {
+    max-width: 900px;
+}
+
+/* JavaScript message output styling (Milestone requirement: interactive feedback areas) */
+.js-message {
+    margin: 20px;
+    padding: 10px 14px;
+    border: 1px dashed #333;
+    font-size: 14px;
+    background-color: #ffffff94;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 /* Copyright styling was moved to this file to allow for better readability and easier maintenance. */
@@ -455,4 +495,20 @@ img {
     font-size: 14px;
     margin-top: 20px;
     text-align: center;
+}
+
+/* -------- Milestone 6 mobile alignment fix -------- */
+/* On small screens, large fixed margins make cards look off-center. */
+@media (max-width: 576px) {
+  .card {
+    margin-left: auto;
+    margin-right: auto;
+    /* reduce outer spacing so the card centers cleanly */
+    margin: 12px;
+  }
+
+  /* Optional: reduce default paragraph margin on tiny screens */
+  p {
+    margin: 12px;
+  }
 }

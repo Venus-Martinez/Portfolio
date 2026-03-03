@@ -1,6 +1,7 @@
 <!--
 File: index.html
-Purpose: Home page for CST-120 Milestone 1
+Purpose: Home page for welcoming visitors and providing an overview of the website's content and features
+Testing/Processing: Bootstrap Accordion added to create a collapsible section for the site overview (Mil
 Author: Venus Martinez
 -->
 <!DOCTYPE html>
@@ -14,65 +15,133 @@ Author: Venus Martinez
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Federant&display=swap" rel="stylesheet">
-    <!-- Stylesheet added to website to allow for CSS to be utilized across all pages -->
+    <!-- Latest Bootstrap 5 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="page-home">
     <header>
         <!-- Welcoming visitors -->
-        <h1>Welcome To My Home Page</h1>
+        <h1 class="p-4" data-i18n="homeTitle">Welcome To My Home Page</h1>
         <!-- Links to other pages of the website -->
-        <nav>
-            <ul class="nav">
-                <li><a href="index.html">Home</a></li> <!-- id of "home-link" removed -->
-                <li><a href="about.html">About</a></li> <!-- id of "about-link" removed -->
-                <li><a href="hobbies.html">Hobbies</a></li> <!-- id of "hobbies-link" removed -->
-                <li><a href="photos.html">Photos</a></li>
-            </ul>
+        <!-- Bootstrap Navbar: responsive menu system for Milestone 6 -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">Venus</a>
+
+                <!-- Hamburger button appears on smaller screens -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+                    aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="mainNavbar">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="index.html" data-i18n="navHome">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html" data-i18n="navAbout">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="hobbies.html" data-i18n="navHobbies">Hobbies</a></li>
+                        <li class="nav-item"><a class="nav-link" href="photos.html" data-i18n="navPhotos">Photos</a></li>
+                        <!-- Contact Page added for Milestone 7 -->
+                        <li class="nav-item"><a class="nav-link" href="contact.html" data-i18n="navContact">Contact</a></li>
+                    </ul>
+
+                    <!-- Language selection (kept from Milestone 4) -->
+                    <div class="d-flex align-items-center gap-2">
+                        <label class="form-label mb-0" for="languageSelect">Language or Idioma:</label>
+                        <select class="form-select form-select-sm w-auto" id="languageSelect">
+                            <option value="en">English</option>
+                            <option value="es">Español</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
         </nav>
+
         <hr />
     </header>
 
-    <main class="container">
+    <main class="container site-container">
         <!-- Introductory paragraph -->
 
-        <p>
-            Welcome to my CST-120 milestone website. My name is Venus Martinez, and I am working toward a Bachelor’s in
+        <p data-i18n="homeIntro">
+            Welcome to my CST-120 milestone website. My name is Venus Martinez, and I am working toward a
+            Bachelor&apos;s in
             Software Development.
             I am originally from Buffalo, New York, and I moved to Phoenix, Arizona in 2016.
             This site will grow throughout the course as I build more pages and add new features.
         </p>
-        <div class="card">
-        <!-- Highlights of the website -->
-        <h2>What You Will Find Here</h2>
-        <ul>
-            <li><b>About Me:</b> <i>a brief background and quick facts</i></li>
-            <li><b>Hobbies:</b> <i>a few interests that keep me balanced</i></li>
-            <li><b>Photos:</b> <i>images included as part of this project</i></li>
-        </ul>
-        <h2>Coming Soon</h2>
-        <ul>
-            <li><b>Events:</b> <i>reminders and important dates related to school and personal goals</i></li>
-            <li><b>Contact:</b> <i>ways to reach me</i></li>
-        </ul>
-        </div>
-        <br />
-    </main>
+        <section class="card">
+            <!-- Bootstrap Accordion (UI component #1 for Milestone 6) -->
+            <h2 class="h4">Site Overview</h2>
+            <div class="accordion" id="homeAccordion">
+                <div class="accordion-item">
+                    <h3 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            What You Will Find Here
+                        </button>
+                    </h3>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                        data-bs-parent="#homeAccordion">
+                        <div class="accordion-body">
+                            <ul class="mb-0">
+                                <li><strong>About Me:</strong> a brief background and quick facts</li>
+                                <li><strong>Hobbies:</strong> a few interests that keep me balanced</li>
+                                <li><strong>Photos:</strong> images included as part of this project</li>
+                                <li><strong>Contact:</strong> a form provided to send a message</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
-    <footer>
+                <div class="accordion-item">
+                    <h3 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Coming Soon
+                        </button>
+                    </h3>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                        data-bs-parent="#homeAccordion">
+                        <div class="accordion-body">
+                            <ul class="mb-0">
+                                <li><strong>Events:</strong> reminders and important dates related to school and
+                                    personal goals</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer (only page with slightly different footer to guide users to explore further pages) -->
+    <footer class="container mt-1 mb-5">
         <hr />
         <!-- Featured links to guide visitors -->
         <h3 class="guide">Start Here</h3>
         <p class="start-here"><a href="about.html">About Me</a> includes a short introduction and quick facts.</p>
         <p class="start-here"><a href="hobbies.html">Hobbies</a> shares some of the interests and activities I enjoy.</p>
-        <!-- Photos page link added to the "Start Here" section -->
         <p class="start-here"><a href="photos.html">Photos</a> includes a small collection of images that represent my personal interests and experiences.</p>
+        <p class="start-here"><a href="contact.html">Contact</a> has a form designed to make sending a message simple.</p>
+        <small><em>Thank you for visiting my website!</em></small>
         <br />
-        <!-- Copyright in the footer -->
-
-        <p class="copyright"><em>© 2026 Venus Martinez</em></p>
+        <br />
+        <div class="text-center">
+        <small><em>Copyright &copy; 2026 <a class="text-decoration-none text-reset" href="https://github.com/Venus-Martinez">Venus Martinez</a></em></small>
+        </div>
     </footer>
+    <!-- Latest jQuery (Bootstrap 5 does not need it) -->
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+
+    <!-- Latest Bootstrap 5 Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <script src="js/i18n.js" defer></script>
+    <script src="js/site.js" defer></script>
 </body>
 
 </html>
