@@ -55,7 +55,7 @@ function setupAboutPage() {
 
 function setupPhotosPage() {
     // Select all photos that contain a custom popup message
-    const photoImages = document.querySelectorAll("#photoGridSection img[data-message]");
+    const photoImages = document.querySelectorAll("#photoCarouselSection img[data-message]");
 
     // Add a click event to every image in the gallery
     photoImages.forEach((img) => {
@@ -112,19 +112,19 @@ function setupJQueryToggles() {
             $("#mediaSection").slideToggle(200);
         });
 
-        // Photos page: hide and show the photo gallery section
-        $("#toggle-photo-grid").on("click", function () {
-            $("#photoGridSection").slideToggle(200, function () {
-                const galleryVisible = $("#photoGridSection").is(":visible");
+        // Photos page: hide and show the photo carousel section
+        $("#toggle-photo-carousel").on("click", function () {
+            $("#photoCarouselSection").slideToggle(200, function () {
+                const carouselVisible = $("#photoCarouselSection").is(":visible");
 
                 // IMPORTANT: clear any old inline display style left by .toggle() / .hide()
                 $("#photoHiddenMessage").removeAttr("style");
 
-                // Show message only when gallery is hidden
-                $("#photoHiddenMessage").toggleClass("d-none", galleryVisible);
+                // Show message only when carousel is hidden
+                $("#photoHiddenMessage").toggleClass("d-none", carouselVisible);
 
-                $("#toggle-photo-grid").text(
-                    galleryVisible ? "Hide Photo Gallery" : "Show Photo Gallery"
+                $("#toggle-photo-carousel").text(
+                    carouselVisible ? "Hide Carousel" : "Show Carousel"
                 );
             });
         });
